@@ -1,0 +1,18 @@
+name: dart_helpers
+description: Helpers for Dart's development. See also `flutter_helpers`.
+homepage: https://github.com/signmotion/dart_helpers
+publish_to: none
+
+version: 0.1.0+100
+
+environment:
+  sdk: '>=2.17.1 <3.0.0'
+
+dependencies:
+  package_info_plus: ^1.3.0
+  vector_math: ^2.1.2
+
+dev_dependencies:
+  json_annotation: ^4.5.0
+  lints: ^2.0.0
+  test: ^1.15.0
