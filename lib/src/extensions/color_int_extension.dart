@@ -30,7 +30,7 @@ extension ColorIntExtension on int {
   /// * `b` is [colorIntBlue], from 0 to 255.
   ///
   /// Out of range values are brought into range using modulo 255.
-  int colorIntFromARGB(int a, int r, int g, int b) =>
+  int colorIntFromArgb(int a, int r, int g, int b) =>
       (((a & 0xff) << 24) |
           ((r & 0xff) << 16) |
           ((g & 0xff) << 8) |
@@ -71,7 +71,7 @@ extension ColorIntExtension on int {
   ///
   /// Out of range values will have unexpected effects.
   int colorIntWithAlpha(int a) {
-    return colorIntFromARGB(a, colorIntRed, colorIntGreen, colorIntBlue);
+    return colorIntFromArgb(a, colorIntRed, colorIntGreen, colorIntBlue);
   }
 
   /// Returns a new color that matches this color with the alpha channel

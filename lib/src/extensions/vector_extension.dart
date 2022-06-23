@@ -13,6 +13,10 @@ extension Vector2Vector2Extension on Vector2 {
   bool isEqualAsInt(Vector2 b) =>
       x.round() == b.x.round() && y.round() == b.y.round();
 
+  double get aspectRatio => x / y;
+
+  Vector2 get swapped => Vector2(y, x);
+
   List<double> toJson1() => toJson(digits: 1);
 
   List<double> toJson({int? digits}) =>
