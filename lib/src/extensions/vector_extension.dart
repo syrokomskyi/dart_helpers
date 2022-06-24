@@ -17,6 +17,11 @@ extension Vector2Vector2Extension on Vector2 {
 
   Vector2 get swapped => Vector2(y, x);
 
+  String toDelimiterString([String delimiter = 'x', int fractionDigits = 0]) =>
+      '${x.toStringAsFixed(fractionDigits)}'
+      '$delimiter'
+      '${y.toStringAsFixed(fractionDigits)}';
+
   List<double> toJson1() => toJson(digits: 1);
 
   List<double> toJson({int? digits}) =>
