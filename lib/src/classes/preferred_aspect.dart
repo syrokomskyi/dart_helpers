@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:vector_math/vector_math_64.dart';
 
-import '../../dart_helpers.dart';
+import '../extensions/vector_extension.dart';
 
 /// \see https://docs.flutter.dev/development/ui/assets-and-images#resolution-aware
 /// \see https://en.wikipedia.org/wiki/Aspect_ratio_(image)

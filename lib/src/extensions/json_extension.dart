@@ -1,7 +1,8 @@
 import 'dart:convert' as convert;
-import 'dart:ui';
 
 import 'package:vector_math/vector_math_64.dart';
+
+import '../classes/size.dart';
 
 const _encoder = convert.JsonEncoder.withIndent('  ');
 

@@ -1,7 +1,6 @@
 import 'dart:io' as io;
 import 'dart:math';
 
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 import 'extensions/color_int_extension.dart';
@@ -92,10 +91,6 @@ Vector2 correctTooSmallSize(Vector2 ownSize, Vector2 screenSize) {
 
   return k < 1 ? ownSize / k : ownSize;
 }
-
-Future<String> get appVersion async =>
-    '${(await PackageInfo.fromPlatform()).version}'
-    '.$operatingSystemOneLetter';
 
 String get operatingSystemOneLetter {
   const map = <String, String>{
