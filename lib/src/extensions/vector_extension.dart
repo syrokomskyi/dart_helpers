@@ -17,7 +17,7 @@ extension Vector2Vector2Extension on Vector2 {
 
   Vector2 get swapped => Vector2(y, x);
 
-  String toDelimiterString([String delimiter = 'x', int fractionDigits = 0]) =>
+  String toDelimiterString([String delimiter = ' ', int fractionDigits = 0]) =>
       '${x.toStringAsFixed(fractionDigits)}'
       '$delimiter'
       '${y.toStringAsFixed(fractionDigits)}';
