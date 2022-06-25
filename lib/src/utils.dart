@@ -1,9 +1,31 @@
-import 'dart:io' as io;
+import 'dart:async' show Completer;
+import 'dart:io' as io show Directory, File, FileSystemEntity, Platform, sleep;
 import 'dart:math';
 
 import 'package:vector_math/vector_math_64.dart';
 
 import 'extensions/color_int_extension.dart';
+
+Future<List<io.FileSystemEntity>> allFilesFromDirectory(
+  io.Directory dir, [
+  bool recursive = false,
+]) {
+  final r = <io.File>[];
+
+  final completer = Completer<List<io.FileSystemEntity>>();
+  final lister = dir.list(recursive: recursive);
+  lister.listen(
+    (file) {
+      if (file is io.File) {
+        r.add(file);
+      }
+    },
+    onDone: () => completer.complete(r),
+    onError: print,
+  );
+
+  return completer.future;
+}
 
 /// Returns a `value` which normalized to range [a, b].
 /// \see scaleToRangeVector2()
