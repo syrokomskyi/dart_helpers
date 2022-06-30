@@ -27,6 +27,27 @@ Future<List<io.FileSystemEntity>> allFilesFromDirectory(
   return completer.future;
 }
 
+Future<List<io.FileSystemEntity>> allFoldersFromDirectory(
+  io.Directory dir, [
+  bool recursive = false,
+]) {
+  final r = <io.Directory>[];
+
+  final completer = Completer<List<io.FileSystemEntity>>();
+  final lister = dir.list(recursive: recursive);
+  lister.listen(
+    (folder) {
+      if (folder is io.Directory) {
+        r.add(folder);
+      }
+    },
+    onDone: () => completer.complete(r),
+    onError: print,
+  );
+
+  return completer.future;
+}
+
 /// Returns a `value` which normalized to range [a, b].
 /// \see scaleToRangeVector2()
 double scaleToRange(
@@ -154,9 +175,6 @@ void sleep([
 int get randomInt => Random().nextInt((1 << 32) ~/ 2) - (1 << 32) ~/ 2;
 
 int get randomPositiveInt => Random().nextInt(1 << 32);
-
-bool get isTestEnvironment =>
-    io.Platform.environment.containsKey('FLUTTER_TEST');
 
 bool isGrayColorInt(int color, int x, int y) =>
     color.colorIntRed == color.colorIntGreen &&
