@@ -8,4 +8,5 @@ export 'src/extensions/json_extension.dart';
 export 'src/extensions/num_extension.dart';
 export 'src/extensions/string_extension.dart';
 export 'src/extensions/vector_extension.dart';
+export 'src/log.dart';
 export 'src/utils.dart';
