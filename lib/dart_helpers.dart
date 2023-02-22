@@ -1,5 +1,6 @@
 library dart_helpers;
 
+export 'src/classes/base_equatable.dart';
 export 'src/classes/preferred_aspect.dart';
 export 'src/classes/size.dart';
 export 'src/converters/vector_json_converter.dart';
