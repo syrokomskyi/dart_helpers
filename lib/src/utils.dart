@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:vector_math/vector_math_64.dart';
 
 import 'extensions/color_int_extension.dart';
+import 'extensions/string_extension.dart';
 
 Future<List<io.FileSystemEntity>> allFilesFromDirectory(
   io.Directory dir, [
@@ -159,7 +160,7 @@ String get operatingSystem {
 
   final os = io.Platform.operatingSystem;
 
-  return os.isNotEmpty ? '${os[0].toUpperCase()}${os.substring(1)}' : '';
+  return os.toUpperCaseFirtsLetter;
 }
 
 Future<void> pause([
