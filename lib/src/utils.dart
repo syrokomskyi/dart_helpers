@@ -4,8 +4,7 @@ import 'dart:math';
 
 import 'package:vector_math/vector_math_64.dart';
 
-import 'extensions/color_int_extension.dart';
-import 'extensions/string_extension.dart';
+import '../dart_helpers.dart';
 
 Future<List<io.FileSystemEntity>> allFilesFromDirectory(
   io.Directory dir, [
@@ -116,7 +115,7 @@ Vector2 correctTooBigSize(Vector2 ownSize, Vector2 screenSize) {
 bool needIgnore(String s, [String prefix = '-']) => s.startsWith(prefix);
 
 /// \see [needIgnore]
-bool needIgnoreJsonKey(Map<String, dynamic> json, String key) =>
+bool needIgnoreJsonKey(JsonMap json, String key) =>
     needIgnore((json[key] ?? '') as String);
 
 Vector2 correctTooSmallSize(Vector2 ownSize, Vector2 screenSize) {
