@@ -163,12 +163,17 @@ String get operatingSystem {
 }
 
 Future<void> pause([
-  Duration duration = const Duration(milliseconds: 1000),
+  Duration duration = const Duration(milliseconds: 2000),
 ]) async =>
     Future.delayed(duration);
 
+Future<void> pauseInSecond() async => pauseInSeconds(1);
+
+Future<void> pauseInSeconds([int seconds = 2]) async =>
+    pause(Duration(seconds: seconds));
+
 void sleep([
-  Duration duration = const Duration(milliseconds: 1000),
+  Duration duration = const Duration(milliseconds: 2000),
 ]) =>
     io.sleep(duration);
 
