@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:developer';
+import 'dart:developer' as dev show log;
 
 import 'extensions/string_extension.dart';
 
@@ -16,7 +16,28 @@ const logLevelMax = 2000;
 const _logPrintTruncateLength = 300;
 
 void logi(
-  String s, {
+  Object? o, {
+  DateTime? time,
+  int? sequenceNumber,
+  int deltaLevel = 0,
+  String name = '',
+  Zone? zone,
+  Object? error,
+  StackTrace? stackTrace,
+}) =>
+    _logi(
+      o,
+      time: time,
+      sequenceNumber: sequenceNumber,
+      deltaLevel: deltaLevel,
+      name: name,
+      zone: zone,
+      error: error,
+      stackTrace: stackTrace,
+    );
+
+void _logi(
+  Object? o, {
   DateTime? time,
   int? sequenceNumber,
   int deltaLevel = 0,
@@ -29,7 +50,7 @@ void logi(
   assert(level >= logLevelMin && level < logWarningLevel);
 
   _plog(
-    s,
+    o,
     time: time,
     sequenceNumber: sequenceNumber,
     level: level,
@@ -41,7 +62,7 @@ void logi(
 }
 
 void logw(
-  String s, {
+  Object? o, {
   DateTime? time,
   int? sequenceNumber,
   int deltaLevel = 0,
@@ -54,7 +75,7 @@ void logw(
   assert(level >= logWarningLevel && level < logErrorLevel);
 
   _plog(
-    s,
+    o,
     time: time,
     sequenceNumber: sequenceNumber,
     level: level,
@@ -66,7 +87,7 @@ void logw(
 }
 
 void loge(
-  String s, {
+  Object? o, {
   DateTime? time,
   int? sequenceNumber,
   int deltaLevel = 0,
@@ -79,7 +100,7 @@ void loge(
   assert(level >= logErrorLevel && level <= logLevelMax);
 
   _plog(
-    s,
+    o,
     time: time,
     sequenceNumber: sequenceNumber,
     level: level,
@@ -91,7 +112,7 @@ void loge(
 }
 
 void _plog(
-  String s, {
+  Object? o, {
   DateTime? time,
   int? sequenceNumber,
   required int level,
@@ -101,8 +122,8 @@ void _plog(
   StackTrace? stackTrace,
 }) {
   if (!usePrint) {
-    log(
-      s,
+    dev.log(
+      '$o',
       time: time,
       sequenceNumber: sequenceNumber,
       level: level,
@@ -122,6 +143,7 @@ void _plog(
     letter = 'e';
   }
 
+  final s = '$o';
   var r = '$letter) ${s.truncate(_logPrintTruncateLength)}';
   if (name.isNotEmpty) {
     r = '$name $r';
@@ -143,4 +165,26 @@ void _plog(
   }
 
   print(r);
+}
+
+extension Log on Object {
+  void logi({
+    DateTime? time,
+    int? sequenceNumber,
+    int deltaLevel = 0,
+    String name = '',
+    Zone? zone,
+    Object? error,
+    StackTrace? stackTrace,
+  }) =>
+      _logi(
+        toString(),
+        time: time,
+        sequenceNumber: sequenceNumber,
+        deltaLevel: deltaLevel,
+        name: name,
+        zone: zone,
+        error: error,
+        stackTrace: stackTrace,
+      );
 }
