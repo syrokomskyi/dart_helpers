@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 abstract class BaseEquatable extends Equatable {
   const BaseEquatable();
 
-  int get shrinkToString => 100;
+  int get shrinkToString => 120;
 
   @override
   bool? get stringify => true;
