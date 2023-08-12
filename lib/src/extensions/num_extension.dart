@@ -1,13 +1,14 @@
 import 'dart:math';
 
 extension DoubleExtension on double {
-  static const zeroValue = 0.01;
+  static const defaultZeroValue = 0.01;
 
   bool get isNearZero => isNear(0.0);
 
   bool get isNearOne => isNear(1.0);
 
-  bool isNear(double v) => (this - v).abs() < zeroValue;
+  bool isNear(double v, [double zeroValue = defaultZeroValue]) =>
+      (this - v).abs() < zeroValue;
 
   double get n0 => round().roundToDouble();
 
