@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer' as dev show log;
 
-import 'extensions/string_extension.dart';
+import 'extensions/string_ext.dart';
 
 const usePrint = true;
 

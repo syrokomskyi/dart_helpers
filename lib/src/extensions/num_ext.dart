@@ -1,6 +1,6 @@
 import 'dart:math';
 
-extension DoubleExtension on double {
+extension DoubleExt on double {
   static const defaultZeroValue = 0.01;
 
   bool get isNearZero => isNear(0.0);

@@ -1,8 +1,8 @@
 import 'package:vector_math/vector_math_64.dart';
 
-import '../extensions/num_extension.dart';
+import 'num_ext.dart';
 
-extension Vector2Vector2Extension on Vector2 {
+extension Vector2Vector2Ext on Vector2 {
   static const zeroLength = 0.01;
 
   bool get isNearZero => length2 < zeroLength * zeroLength;

@@ -1,4 +1,4 @@
-extension StringExtension on String {
+extension StringExt on String {
   String get removedDoubleSpaces => replaceAll(RegExp(r'\s+'), ' ');
 
   String truncate([int len = 200, String omission = '…']) =>

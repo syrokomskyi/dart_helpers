@@ -20,7 +20,7 @@ extension ColorIntByteDataExtension on ByteData {
 /// * Bits 0-7 are the blue value.
 ///
 /// \see `ColorExtension` from the project `flutter_helpers`.
-extension ColorIntExtension on int {
+extension ColorIntExt on int {
   /// Construct a color from the lower 8 bits of four integers.
   ///
   /// * `a` is the alpha value, with 0 being transparent and 255 being fully
@@ -84,7 +84,7 @@ extension ColorIntExtension on int {
   }
 }
 
-extension ColorIntStringExtension on String {
+extension ColorIntStringExt on String {
   int get toColorInt {
     var hexColor = replaceAll('#', '');
     if (hexColor.length == 6) {
