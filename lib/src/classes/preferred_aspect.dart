@@ -7,6 +7,8 @@ import '../../dart_helpers.dart';
 /// \see https://docs.flutter.dev/development/ui/assets-and-images#resolution-aware
 /// \see https://en.wikipedia.org/wiki/Aspect_ratio_(image)
 class PreferredAspect {
+  const PreferredAspect(this.size);
+
   static const aspectSizeDelimiter = 'to';
 
   final Vector2 size;
@@ -22,8 +24,6 @@ class PreferredAspect {
         Vector2(3, 4),
         Vector2(1, 1),
       ];
-
-  const PreferredAspect(this.size);
 
   Vector2 preferredAspectSize() => preferredAspectSizes().values.first;
 

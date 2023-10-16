@@ -251,39 +251,39 @@ void main() {
 }
 
 class BestScaleTestData {
-  final Vector2 screenSize;
-  final Vector2 originalSize;
-  final List<int> availableScales;
-  final int expectedScale;
-
   const BestScaleTestData(
     this.screenSize,
     this.originalSize,
     this.availableScales,
     this.expectedScale,
   );
+
+  final Vector2 screenSize;
+  final Vector2 originalSize;
+  final List<int> availableScales;
+  final int expectedScale;
 }
 
 class BestSizeTestData {
-  final Vector2 screenSize;
-  final List<Vector2> pictureSizes;
-  final Vector2? expectedPictureSize;
-
   const BestSizeTestData(
     this.screenSize,
     this.pictureSizes,
     this.expectedPictureSize,
   );
+
+  final Vector2 screenSize;
+  final List<Vector2> pictureSizes;
+  final Vector2? expectedPictureSize;
 }
 
 class ResolutionDividerTestData {
-  final Vector2 size;
-  final List<Vector2> sizes;
-  final int expectedResolutionDivider;
-
   const ResolutionDividerTestData(
     this.size,
     this.sizes,
     this.expectedResolutionDivider,
   );
+
+  final Vector2 size;
+  final List<Vector2> sizes;
+  final int expectedResolutionDivider;
 }

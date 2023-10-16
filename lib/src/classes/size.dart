@@ -1,11 +1,11 @@
 /// Prefer use a `Vector2` and `vector_extension.dart` instead this `Size`.
 class Size {
-  final num width;
-  final num height;
-
   const Size(this.width, this.height)
       : assert(width >= 0),
         assert(height >= 0);
+
+  final num width;
+  final num height;
 
   static Size get one => const Size(1, 1);
 
