@@ -1,39 +1,15 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Dart Helpers
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+[![Build Status](https://github.com/signmotion/dart_helpers/actions/workflows/dart.yml/badge.svg?branch=master)](https://github.com/signmotion/dart_helpers/actions/workflows/dart.yml)
+[![Code Coverage](https://codecov.io/gh/signmotion/dart_helpers/branch/master/graph/badge.svg?token=BcQSTotPss)](https://codecov.io/gh/signmotion/dart_helpers)
+[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/signmotion/dart_helpers/master/LICENSE)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+A set of functions, extensions and classes for supporting Dart apps.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This library is open source, stable and well tested. Development happens on [GitHub](https://github.com/signmotion/dart_helpers). Feel free to report issues or create a pull-request there. General questions are best asked on [StackOverflow](https://stackoverflow.com/questions/tagged/dart_helpers).
 
-## Features
+The package is hosted on [dart packages](https://pub.dev/packages/dart_helpers). Up-to-date [class documentation](https://pub.dev/documentation/dart_helpers/latest/) is created with every release.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+### License
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+The MIT License, see [LICENSE](https://github.com/signmotion/dart_helpers/raw/master/LICENSE).
