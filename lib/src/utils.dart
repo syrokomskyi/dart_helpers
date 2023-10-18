@@ -128,7 +128,12 @@ Future<void> pause([
 Future<void> pauseInSecond() async => pauseInSeconds(1);
 
 Future<void> pauseInSeconds([int seconds = 2]) async =>
-    pause(Duration(seconds: seconds));
+    pauseInMilliseconds(seconds * 1000);
+
+Future<void> pauseInMillisecond() async => pauseInMilliseconds(1);
+
+Future<void> pauseInMilliseconds([int milliseconds = 2]) async =>
+    pause(Duration(milliseconds: milliseconds));
 
 void sleep([
   Duration duration = const Duration(milliseconds: 2000),
