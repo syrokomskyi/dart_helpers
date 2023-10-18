@@ -14,7 +14,18 @@ extension DirectoryExt on io.Directory {
         nameContains: nameContains,
       );
 
-  List<io.Directory> allFoldersSync({
+  io.File? firstFileSync({
+    bool recursive = false,
+    String? extension,
+    String? nameContains,
+  }) =>
+      allFilesSync(
+        recursive: recursive,
+        extension: extension,
+        nameContains: nameContains,
+      ).firstOrNull;
+
+  List<io.Directory> allDirectoriesSync({
     bool recursive = false,
     String? nameContains,
   }) =>
@@ -22,6 +33,15 @@ extension DirectoryExt on io.Directory {
         recursive: recursive,
         nameContains: nameContains,
       );
+
+  io.Directory? firstDirectorySync({
+    bool recursive = false,
+    String? nameContains,
+  }) =>
+      allDirectoriesSync(
+        recursive: recursive,
+        nameContains: nameContains,
+      ).firstOrNull;
 
   List<E> allFileSystemEntitiesSync<E extends io.FileSystemEntity>({
     bool recursive = false,
