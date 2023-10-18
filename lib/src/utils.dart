@@ -1,52 +1,52 @@
-import 'dart:async' show Completer;
 import 'dart:io' as io show Directory, File, FileSystemEntity, Platform, sleep;
 import 'dart:math';
 
+import 'package:path/path.dart' as p;
 import 'package:vector_math/vector_math_64.dart';
 
 import '../dart_helpers.dart';
 
-Future<List<io.FileSystemEntity>> allFilesFromDirectory(
-  io.Directory dir, [
+List<io.FileSystemEntity> allFilesFromDirectorySync(
+  io.Directory dir, {
   bool recursive = false,
-]) {
-  final r = <io.File>[];
+  String? extension,
+  String? nameContains,
+}) =>
+    allFileSystemEntitiesSync<io.File>(
+      dir,
+      recursive: recursive,
+      extension: extension,
+      nameContains: nameContains,
+    );
 
-  final completer = Completer<List<io.FileSystemEntity>>();
-  final lister = dir.list(recursive: recursive);
-  lister.listen(
-    (file) {
-      if (file is io.File) {
-        r.add(file);
-      }
-    },
-    onDone: () => completer.complete(r),
-    onError: print,
-  );
-
-  return completer.future;
-}
-
-Future<List<io.FileSystemEntity>> allFoldersFromDirectory(
-  io.Directory dir, [
+List<io.FileSystemEntity> allFoldersFromDirectorySync(
+  io.Directory dir, {
   bool recursive = false,
-]) {
-  final r = <io.Directory>[];
+  String? nameContains,
+}) =>
+    allFileSystemEntitiesSync<io.Directory>(
+      dir,
+      recursive: recursive,
+      nameContains: nameContains,
+    );
 
-  final completer = Completer<List<io.FileSystemEntity>>();
-  final lister = dir.list(recursive: recursive);
-  lister.listen(
-    (folder) {
-      if (folder is io.Directory) {
-        r.add(folder);
-      }
-    },
-    onDone: () => completer.complete(r),
-    onError: print,
-  );
-
-  return completer.future;
-}
+List<io.FileSystemEntity>
+    allFileSystemEntitiesSync<T extends io.FileSystemEntity>(
+  io.Directory dir, {
+  bool recursive = false,
+  String? extension,
+  String? nameContains,
+}) =>
+        dir
+            .listSync(recursive: recursive)
+            .whereType<io.File>()
+            .where((entity) => extension == null
+                ? true
+                : p.extension(entity.path) == '.$extension')
+            .where((entity) => nameContains == null
+                ? true
+                : p.basename(entity.path).contains(nameContains))
+            .toList();
 
 /// Returns a `value` which normalized to range [a, b].
 /// \see scaleToRangeVector2()
