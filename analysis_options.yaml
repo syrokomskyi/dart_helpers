@@ -1,12 +1,10 @@
 include: package:lints/recommended.yaml
+
 analyzer:
   language:
     strict-casts: true
     strict-inference: true
     strict-raw-types: true
-
-  plugins:
-    - dart_code_metrics
 
   exclude: [build/**, lib/**.g.dart]
 
@@ -27,20 +25,3 @@ linter:
     - unnecessary_late
     - unnecessary_statements
     - use_super_parameters
-
-dart_code_metrics:
-  rules:
-    #- prefer-trailing-comma TODO(luan) this is broken on NS
-    - prefer-trailing-comma-for-collection
-    - no-equal-then-else
-    - no-object-declaration
-    - potential-null-dereference
-
-  metrics-exclude:
-    - test/**
-
-  metrics:
-    number-of-arguments: 8
-    number-of-methods: 32
-    source-lines-of-code: 200
-    cyclomatic-complexity: 36
