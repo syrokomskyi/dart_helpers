@@ -82,6 +82,9 @@ extension ColorIntExt on int {
     assert(opacity >= 0.0 && opacity <= 1.0);
     return colorIntWithAlpha((255.0 * opacity).round());
   }
+
+  bool get isGrayColorInt =>
+      colorIntRed == colorIntGreen && colorIntGreen == colorIntBlue;
 }
 
 extension ColorIntStringExt on String {

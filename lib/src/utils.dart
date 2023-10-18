@@ -1,52 +1,10 @@
-import 'dart:io' as io show Directory, File, FileSystemEntity, Platform, sleep;
+import 'dart:io' as io show Platform, sleep;
 import 'dart:math';
 
-import 'package:path/path.dart' as p;
 import 'package:vector_math/vector_math_64.dart';
 
-import '../dart_helpers.dart';
-
-List<io.FileSystemEntity> allFilesFromDirectorySync(
-  io.Directory dir, {
-  bool recursive = false,
-  String? extension,
-  String? nameContains,
-}) =>
-    allFileSystemEntitiesSync<io.File>(
-      dir,
-      recursive: recursive,
-      extension: extension,
-      nameContains: nameContains,
-    );
-
-List<io.FileSystemEntity> allFoldersFromDirectorySync(
-  io.Directory dir, {
-  bool recursive = false,
-  String? nameContains,
-}) =>
-    allFileSystemEntitiesSync<io.Directory>(
-      dir,
-      recursive: recursive,
-      nameContains: nameContains,
-    );
-
-List<io.FileSystemEntity>
-    allFileSystemEntitiesSync<T extends io.FileSystemEntity>(
-  io.Directory dir, {
-  bool recursive = false,
-  String? extension,
-  String? nameContains,
-}) =>
-        dir
-            .listSync(recursive: recursive)
-            .whereType<io.File>()
-            .where((entity) => extension == null
-                ? true
-                : p.extension(entity.path) == '.$extension')
-            .where((entity) => nameContains == null
-                ? true
-                : p.basename(entity.path).contains(nameContains))
-            .toList();
+import 'classes/jsons.dart';
+import 'extensions/string_ext.dart';
 
 /// Returns a `value` which normalized to range [a, b].
 /// \see scaleToRangeVector2()
@@ -180,7 +138,3 @@ void sleep([
 int get randomInt => Random().nextInt((1 << 32) ~/ 2) - (1 << 32) ~/ 2;
 
 int get randomPositiveInt => Random().nextInt(1 << 32);
-
-bool isGrayColorInt(int color, int x, int y) =>
-    color.colorIntRed == color.colorIntGreen &&
-    color.colorIntGreen == color.colorIntBlue;
