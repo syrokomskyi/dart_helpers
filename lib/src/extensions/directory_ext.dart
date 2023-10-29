@@ -49,7 +49,7 @@ extension DirectoryExt on io.Directory {
     String? nameContains,
   }) =>
       listSync(recursive: recursive)
-          .whereType<io.File>()
+          .whereType<E>()
           .where((entity) => extension == null
               ? true
               : p.extension(entity.path) == '.$extension')
