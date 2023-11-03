@@ -12,6 +12,15 @@ extension StringExt on String {
     return r;
   }
 
+  String get replaceNewLinesNtoRN =>
+      replaceNewLinesRNtoN.replaceAll('\n', '\r\n');
+
+  String get replaceNewLinesRNtoN => replaceAll('\r\n', '\n');
+
+  /// For parse a MD-format text.
+  String get replaceNewLinesToDoubleRN =>
+      replaceNewLinesRNtoN.replaceAll('\n', '\r\n\r\n');
+
   String truncate([int len = 200, String omission = '…']) =>
       len >= length ? this : replaceRange(len, length, omission);
 
