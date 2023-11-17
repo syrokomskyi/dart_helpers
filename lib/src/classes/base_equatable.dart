@@ -16,8 +16,13 @@ abstract class BaseEquatable extends Equatable {
   @override
   String toString() {
     final s = props.join('\t');
-    final data = s.substring(0, min(shrinkToString, s.length)) +
-        (s.length > shrinkToString ? '...' : '');
+    late final String data;
+    if (shrinkToString > 0) {
+      data = s.substring(0, min(shrinkToString, s.length)) +
+          (s.length > shrinkToString ? '...' : '');
+    } else {
+      data = s;
+    }
 
     return '$runtimeType $data';
   }
