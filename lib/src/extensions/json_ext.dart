@@ -27,12 +27,30 @@ extension StringJsonExt on String {
 
   JsonMap get jsonMap => jsonDecoder(this) as JsonMap;
 
+  /// !) All whitespaces and newlines with edges will be removed.
+  String get sjsonWithoutWrappers {
+    final s = trim();
+    if (s.startsWith('{')) {
+      return _sjsonWithoutWrappers('{');
+    }
+
+    if (s.startsWith('[')) {
+      return _sjsonWithoutWrappers('[');
+    }
+
+    if (s.startsWith('"')) {
+      return _sjsonWithoutWrappers('"');
+    }
+
+    return s;
+  }
+
   /// [beginWrapper] The first symbol of wrapped string.
-  String sjsonWithoutWrappers(String beginWrapper) {
+  String _sjsonWithoutWrappers(String beginWrapper) {
     assert(beginWrapper.isNotEmpty, 'Wrapper should be defined.');
 
     var s = replaceFirst(beginWrapper, '');
-    s = s.substring(0, s.length - beginWrapper.length - 1);
+    s = s.substring(0, s.length - beginWrapper.length);
     final lines = const LineSplitter().convert(s);
     var r = lines;
     if (lines.length >= 2) {
@@ -52,9 +70,9 @@ extension StringJsonExt on String {
 }
 
 extension ListJsonExt on JsonList {
-  String get sjsonWithoutWrappers => sjson.sjsonWithoutWrappers('[');
+  String get sjsonWithoutWrappers => sjson.sjsonWithoutWrappers;
 }
 
 extension MapJsonExt on JsonMap {
-  String get sjsonWithoutWrappers => sjson.sjsonWithoutWrappers('{');
+  String get sjsonWithoutWrappers => sjson.sjsonWithoutWrappers;
 }
