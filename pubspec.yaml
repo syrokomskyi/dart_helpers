@@ -12,6 +12,7 @@ dependencies:
   equatable: ^2.0.5
   json_annotation: ^4.8.1
   path: ^1.8.3
+  strings: ^2.0.3
   vector_math: ^2.1.2
 
 dev_dependencies:
