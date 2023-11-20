@@ -1,4 +1,28 @@
 extension StringExt on String {
+  /// Left [begin] first and [end] last symbols.
+  /// Before them will insert [replacer].
+  String bittenOf(int begin, int end, [String replacer = '..']) {
+    if (isEmpty) {
+      return this;
+    }
+
+    final pbegin = begin.clamp(0, length);
+    final pend = end.clamp(0, length);
+
+    if (pbegin == 0 && pend == 0) {
+      return '';
+    }
+
+    if (pbegin + pend >= length) {
+      return this;
+    }
+
+    final a = substring(0, pbegin);
+    final b = substring(length - pend);
+
+    return '$a$replacer$b';
+  }
+
   String get removedDoubleSpaces => replaceAll(RegExp(r'\s+'), ' ');
 
   String get removedDoubleChars {
@@ -32,4 +56,10 @@ extension StringExt on String {
       'Use [toCapitalised] instead. See https://strings.onepub.dev/style')
   String get toUpperCaseFirtsLetter =>
       isEmpty ? '' : '${this[0].toUpperCase()}${substring(1)}';
+}
+
+extension ListStringExt on List<String> {
+  /// Same [bittenOf] but for the each string into the list.
+  List<String> bittenOf(int begin, int end, [String replacer = '..']) =>
+      map((e) => e.bittenOf(begin, end, replacer)).toList();
 }
