@@ -3,19 +3,53 @@
 import 'dart:async';
 import 'dart:developer' as dev show log;
 
-import 'extensions/string_ext.dart';
+import '../dart_helpers.dart';
 
-const usePrint = true;
-
-const logLevelMin = 0;
-
-const logInfoLevel = 0;
-const logWarningLevel = 500;
-const logErrorLevel = 1500;
-
-const logLevelMax = 2000;
+var logUsePrint = true;
+var logShowSymbolInsteadOfLetter = true;
 
 const _logPrintTruncateLength = 300;
+
+enum LogType {
+  undefined('?', '❔', -1),
+  info('i', 'ℹ️', 0 * deltaLevel),
+  warning('w', '⚠️', 1 * deltaLevel),
+  error('e', '⭕', 2 * deltaLevel);
+
+  const LogType(this.letter, this.symbol, this.level)
+      : assert(letter.length != 0),
+        assert(symbol.length != 0),
+        assert(level >= -1 && level < 3 * deltaLevel);
+
+  static const deltaLevel = 1000;
+
+  static int get levelMax => error.level + deltaLevel;
+
+  final String letter;
+  final String symbol;
+  final int level;
+
+  @override
+  String toString() => symbol;
+}
+
+extension on int {
+  LogType get type {
+    if (this >= LogType.info.level && this < LogType.warning.level) {
+      return LogType.info;
+    }
+
+    if (this >= LogType.warning.level && this < LogType.error.level) {
+      return LogType.warning;
+    }
+
+    if (this >= LogType.error.level && this < LogType.levelMax) {
+      return LogType.error;
+    }
+
+    return LogType.undefined;
+  }
+}
 
 void logi(
   Object? o, {
@@ -48,8 +82,8 @@ void _logi(
   Object? error,
   StackTrace? stackTrace,
 }) {
-  final level = logInfoLevel + deltaLevel;
-  assert(level >= logLevelMin && level < logWarningLevel);
+  final level = LogType.info.level + deltaLevel;
+  assert(level >= LogType.info.level && level < LogType.warning.level);
 
   _plog(
     o,
@@ -73,8 +107,8 @@ void logw(
   Object? error,
   StackTrace? stackTrace,
 }) {
-  final level = logWarningLevel + deltaLevel;
-  assert(level >= logWarningLevel && level < logErrorLevel);
+  final level = LogType.warning.level + deltaLevel;
+  assert(level >= LogType.warning.level && level < LogType.error.level);
 
   _plog(
     o,
@@ -98,8 +132,8 @@ void loge(
   Object? error,
   StackTrace? stackTrace,
 }) {
-  final level = logErrorLevel + deltaLevel;
-  assert(level >= logErrorLevel && level <= logLevelMax);
+  final level = LogType.error.level + deltaLevel;
+  assert(level >= LogType.error.level && level <= LogType.levelMax);
 
   _plog(
     o,
@@ -123,7 +157,7 @@ void _plog(
   Object? error,
   StackTrace? stackTrace,
 }) {
-  if (!usePrint) {
+  if (!logUsePrint) {
     dev.log(
       '$o',
       time: time,
@@ -137,16 +171,11 @@ void _plog(
     return;
   }
 
-  var letter = 'i';
-  if (level >= logWarningLevel) {
-    letter = 'w';
-  }
-  if (level >= logErrorLevel) {
-    letter = 'e';
-  }
-
+  final prefix = logShowSymbolInsteadOfLetter
+      ? level.type.symbol
+      : '${level.type.letter})';
   final s = '$o';
-  var r = '$letter) ${s.truncate(_logPrintTruncateLength)}';
+  var r = '$prefix ${s.abbreviate(_logPrintTruncateLength)}';
   if (name.isNotEmpty) {
     r = '$name $r';
   }
