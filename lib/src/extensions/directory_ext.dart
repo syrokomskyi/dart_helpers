@@ -56,5 +56,5 @@ extension DirectoryExt on io.Directory {
           .where((entity) => nameContains == null
               ? true
               : p.basename(entity.path).contains(nameContains))
-          .toList() as List<E>;
+          .toList();
 }
