@@ -1,5 +1,6 @@
 import 'package:dart_helpers/dart_helpers.dart';
 import 'package:test/test.dart';
+import 'package:vector_math/vector_math_64.dart';
 
 void main() {
   test('jsonWithSignificantFields', () {
@@ -78,27 +79,103 @@ void main() {
         }.keys);
   });
 
+  test('sjson encodable object', () {
+    expect(const Size(11, 12).sjson, '[\n  11,\n  12\n]');
+    expect(Vector2(1.0, -0.2).sjson, '[\n  1.0,\n  -0.2\n]');
+  });
+
+  test('sjsonInLine encodable object', () {
+    expect(const Size(11, 12).sjsonInLine, '[11,12]');
+    expect(Vector2(1.0, -0.2).sjsonInLine, '[1.0,-0.2]');
+  });
+
+  test('sjsonInLineWithoutWrappers encodable object', () {
+    expect(const Size(11, 12).sjsonInLineWithoutWrappers, '11,12');
+    expect(Vector2(1.0, -0.2).sjsonInLineWithoutWrappers, '1.0,-0.2');
+  });
+
+  test('sjson non-encodable object', () {
+    expect(
+      const NonEncodableObject().sjson,
+      '"Instance of \'NonEncodableObject\'"',
+    );
+  });
+
+  test('sjson array with null object', () {
+    expect([null, 12].sjson, '[\n  null,\n  12\n]');
+  });
+
+  test('sjsonInLine array with null object', () {
+    expect([null, 12].sjsonInLine, '[null,12]');
+  });
+
+  test('sjsonInLineWithoutWrappers array with null object', () {
+    expect([null, 12].sjsonInLineWithoutWrappers, 'null,12');
+  });
+
+  test('sjsonWithoutWrappers array with non-encodable objects', () {
+    expect(
+      [const NonEncodableObject()].sjsonWithoutWrappers,
+      '"Instance of \'NonEncodableObject\'"',
+    );
+  });
+
+  test('sjsonInLineWithoutWrappers array with non-encodable object', () {
+    expect(
+      [const NonEncodableObject()].sjsonInLineWithoutWrappers,
+      '"Instance of \'NonEncodableObject\'"',
+    );
+  });
+
   test('sjsonWithoutWrappers array', () {
-    expect([10, 11, 12].sjsonWithoutWrappers, '10,\r\n11,\r\n12');
+    expect([10, 11, 12].sjsonWithoutWrappers, '10,\n11,\n12');
+  });
+
+  test('sjsonInLineWithoutWrappers array', () {
+    expect([10, 11, 12].sjsonInLineWithoutWrappers, '10,11,12');
+  });
+
+  test('sjsonWithoutWrappers array with null object', () {
+    expect(
+      [null, 12].sjsonWithoutWrappers,
+      'null,\n12',
+    );
+  });
+
+  test('sjsonInLineWithoutWrappers array with null object', () {
+    expect(
+      [null, 12].sjsonInLineWithoutWrappers,
+      'null,12',
+    );
   });
 
   test('sjsonWithoutWrappers object', () {
     expect({'t': 1}.sjsonWithoutWrappers, '"t": 1');
-    expect({'a': 1, 'b': 2}.sjsonWithoutWrappers, '"a": 1,\r\n"b": 2');
+    expect({'a': 1, 'b': 2}.sjsonWithoutWrappers, '"a": 1,\n"b": 2');
     expect(
         {
           'o': {'u': 1}
         }.sjsonWithoutWrappers,
-        '"o": {\r\n  "u": 1\r\n}');
+        '"o": {\n  "u": 1\n}');
+  });
+
+  test('sjsonInLineWithoutWrappers object', () {
+    expect({'t': 1}.sjsonInLineWithoutWrappers, '"t":1');
+    expect({'a': 1, 'b': 2}.sjsonInLineWithoutWrappers, '"a":1,"b":2');
+    expect(
+        {
+          'o': {'u': 1}
+        }.sjsonInLineWithoutWrappers,
+        '"o":{"u":1}');
   });
 
   test('sjsonWithoutWrappers string', () {
     expect('"abc def"'.sjsonWithoutWrappers, 'abc def');
-    expect('"abc\r\ndef"'.sjsonWithoutWrappers, 'abc\r\ndef');
+    expect('"abc\ndef"'.sjsonWithoutWrappers, 'abc\ndef');
 
     expect('""'.sjsonWithoutWrappers, '');
     expect('"    "'.sjsonWithoutWrappers, '');
-    expect('"\r\n\r\n"'.sjsonWithoutWrappers, '');
+    expect('"\n\n"'.sjsonWithoutWrappers, '');
   });
 
   test('sjsonWithoutWrappers bool', () {
@@ -117,3 +194,7 @@ void main() {
 }
 
 enum TestEnum { unspecified, a, b }
+
+class NonEncodableObject {
+  const NonEncodableObject();
+}

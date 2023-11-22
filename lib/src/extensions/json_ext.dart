@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:convert' as convert;
 
 import 'package:vector_math/vector_math_64.dart';
 
@@ -47,20 +47,42 @@ extension CleanProto3JsonExt on JsonMap {
       });
 }
 
+/// See [ObjectJsonExt.toEncodable].
 extension SizeJsonExt on Size {
   List<int> get json => [width.round(), height.round()];
-
-  String get sjson => '[${width.round()}, ${height.round()}]';
 }
 
+/// See [ObjectJsonExt.toEncodable].
 extension Vector2JsonExt on Vector2 {
   List<double> get json => [x, y];
-
-  String get sjson => '[$x, $y]';
 }
 
+/// See [SizeJsonExt], [Vector2JsonExt].
 extension ObjectJsonExt on Object {
-  String get sjson => jsonEncoder(this);
+  /// Returns formatted JSON in string.
+  String get sjson => jsonEncoder(this, toEncodable: toEncodable);
+
+  /// JSON in one line string.
+  String get sjsonInLine =>
+      jsonEncoder(this, indent: '', toEncodable: toEncodable);
+
+  /// JSON in one line string without wrappers.
+  String get sjsonInLineWithoutWrappers => sjsonInLine.sjsonWithoutWrappers;
+
+  /// For encode the specific objects.
+  static Object toEncodable(dynamic o) {
+    if (o is Size) {
+      return o.json;
+    }
+
+    if (o is Vector2) {
+      return o.json;
+    }
+
+    return '$o';
+  }
+
+  static String s(dynamic v) => v == null ? 'null' : (v as Object).sjson;
 }
 
 extension StringJsonExt on String {
@@ -92,7 +114,7 @@ extension StringJsonExt on String {
 
     var s = replaceFirst(beginWrapper, '');
     s = s.substring(0, s.length - beginWrapper.length);
-    final lines = const LineSplitter().convert(s);
+    final lines = const convert.LineSplitter().convert(s);
     var r = lines;
     if (lines.length >= 2) {
       // take the count of spaces from the second line
@@ -106,7 +128,7 @@ extension StringJsonExt on String {
       }
     }
 
-    return r.join(newLineRN).trim();
+    return r.join(newLineN).trim();
   }
 }
 
