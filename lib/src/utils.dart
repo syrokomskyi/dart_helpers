@@ -1,10 +1,10 @@
 import 'dart:io' as io show Platform, sleep;
 import 'dart:math';
 
+import 'package:strings/strings.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 import 'classes/jsons.dart';
-import 'extensions/string_ext.dart';
 
 /// Returns a `value` which normalized to range [a, b].
 /// \see scaleToRangeVector2()
@@ -117,7 +117,7 @@ String get operatingSystem {
 
   final os = io.Platform.operatingSystem;
 
-  return os.toUpperCaseFirtsLetter;
+  return os.toCapitalised();
 }
 
 Future<void> pause([
