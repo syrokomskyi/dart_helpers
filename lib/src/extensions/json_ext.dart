@@ -25,16 +25,26 @@ extension CleanProto3JsonExt on JsonMap {
         (v is Set && v.isEmpty) ||
         false);
 
-  String get sJsonWithSignificantFields => jsonWithSignificantFields.sjson;
+  String get sJsonWithSignificantFields => '$jsonWithSignificantFields';
 
   /// Same [bittenOf] but for the each string into the map (json).
   Map<String, dynamic> bittenOf(int begin, int end, [String replacer = '..']) =>
-      map(
-        (k, v) => MapEntry(
-          k,
-          v is String ? v.bittenOf(begin, end, replacer) : v,
-        ),
-      );
+      map((k, v) {
+        late final dynamic r;
+        if (v is String) {
+          r = v.bittenOf(begin, end, replacer);
+        } else if (v is Map<String, dynamic>) {
+          r = v.bittenOf(begin, end, replacer);
+        } else if (v is List<String>) {
+          r = v.bittenOf(begin, end, replacer);
+        } else if (v is Set<String>) {
+          r = v.bittenOf(begin, end, replacer);
+        } else {
+          r = v;
+        }
+
+        return MapEntry(k, r);
+      });
 }
 
 extension SizeJsonExt on Size {
