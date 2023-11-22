@@ -5,8 +5,9 @@ import 'package:vector_math/vector_math_64.dart';
 import '../classes/jsons.dart';
 import '../classes/size.dart';
 import '../constants/string.dart';
+import 'string_ext.dart';
 
-extension CleanProto3JsonExt on Map<String, dynamic> {
+extension CleanProto3JsonExt on JsonMap {
   /// Removes all empty fields. The "empty fields" according to Proto3:
   /// https://protobuf.dev/programming-guides/proto3/#default
   /// !) Pay attention on the nested maps. See tests.
@@ -25,6 +26,15 @@ extension CleanProto3JsonExt on Map<String, dynamic> {
         false);
 
   String get sJsonWithSignificantFields => jsonWithSignificantFields.sjson;
+
+  /// Same [bittenOf] but for the each string into the map (json).
+  Map<String, dynamic> bittenOf(int begin, int end, [String replacer = '..']) =>
+      map(
+        (k, v) => MapEntry(
+          k,
+          v is String ? v.bittenOf(begin, end, replacer) : v,
+        ),
+      );
 }
 
 extension SizeJsonExt on Size {

@@ -63,3 +63,9 @@ extension ListStringExt on List<String> {
   List<String> bittenOf(int begin, int end, [String replacer = '..']) =>
       map((e) => e.bittenOf(begin, end, replacer)).toList();
 }
+
+extension SetStringExt on Set<String> {
+  /// Same [bittenOf] but for the each string into the set.
+  Set<String> bittenOf(int begin, int end, [String replacer = '..']) =>
+      map((e) => e.bittenOf(begin, end, replacer)).toSet();
+}
