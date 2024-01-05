@@ -213,3 +213,5 @@ fabric.properties
 #*.g.dart
 
 /coverage
+
+/.vscode/settings.json

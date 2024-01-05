@@ -1,0 +1,53 @@
+{
+  "editor.codeActionsOnSave": { "source.fixAll": true },
+
+  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.iconTheme": "icons",
+  "editor.fontFamily": "fira-code-nerd, FiraCode Nerd Font, Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.unicodeHighlight.allowedLocales": {
+    "ru": true,
+    "uk": true
+  },
+
+  "editor.accessibilitySupport": "off",
+  "explorer.confirmDragAndDrop": false,
+  "redhat.telemetry.enabled": true,
+  "editor.unicodeHighlight.allowedCharacters": {
+    "і": true
+  },
+  "git.openRepositoryInParentFolders": "never",
+
+  "typescript.tsserver.watchOptions": {},
+
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "dart.openDevTools": "flutter",
+  "dart.warnWhenEditingFilesOutsideWorkspace": false,
+  "dart.showInspectorNotificationsForWidgetErrors": false,
+  "dart.debugExternalPackageLibraries": true,
+  "dart.debugSdkLibraries": true,
+
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+
+  "[env]": {
+    "editor.defaultFormatter": "IronGeek.vscode-env"
+  },
+
+  "files.associations": {
+    ".env": "env"
+  }
+}
