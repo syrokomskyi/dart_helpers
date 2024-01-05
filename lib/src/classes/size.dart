@@ -1,4 +1,4 @@
-/// Prefer use a `Vector2` and `vector_extension.dart` instead this `Size`.
+/// !) Prefer use a `Vector2` and `vector_extension.dart` instead this `Size`.
 class Size {
   const Size(this.width, this.height)
       : assert(width >= 0),
