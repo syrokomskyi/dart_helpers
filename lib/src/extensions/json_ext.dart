@@ -8,6 +8,32 @@ import '../constants/string.dart';
 import 'string_ext.dart';
 
 extension CleanProto3JsonExt on JsonMap {
+  /// Replace all value of fields with "key-named" value to [replacer].
+  Map<String, dynamic> blured({
+    List<String> nameContains = const <String>[
+      'key',
+      'passw',
+      'psw',
+      'secret',
+    ],
+    String replacer = '*',
+  }) =>
+      map((k, v) {
+        var r = v;
+        if (v is String) {
+          if (nameContains
+              .firstWhere(
+                (nc) => k.contains(nc),
+                orElse: () => '',
+              )
+              .isNotEmpty) {
+            r = v.replaceAll(RegExp(r'.'), replacer);
+          }
+        }
+
+        return MapEntry(k, r);
+      });
+
   /// Removes all empty fields. The "empty fields" according to Proto3:
   /// https://protobuf.dev/programming-guides/proto3/#default
   /// !) Pay attention on the nested maps. See tests.

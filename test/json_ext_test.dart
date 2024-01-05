@@ -3,6 +3,19 @@ import 'package:test/test.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 void main() {
+  test('blured', () {
+    expect({'api_key': '12345-ab'}.blured(), {'api_key': '********'});
+    expect({'password': '12345-ab'}.blured(), {'password': '********'});
+    expect({'passw': '12345-ab'}.blured(), {'passw': '********'});
+    expect({'psw': '12345-ab'}.blured(), {'psw': '********'});
+    expect({'pswd': '12345-ab'}.blured(), {'pswd': '********'});
+    expect({'my_passw': '12345-ab'}.blured(), {'my_passw': '********'});
+    expect({'my_secret': '12345-ab'}.blured(), {'my_secret': '********'});
+    expect({'my_secret': ' 12345-ab  '}.blured(), {'my_secret': '***********'});
+
+    expect({'my_field': 'abc  '}.blured(), {'my_field': 'abc  '});
+  });
+
   test('jsonWithSignificantFields', () {
     const json = <String, dynamic>{
       // null
