@@ -1,5 +1,7 @@
 import 'dart:math';
 
+/// For advance calculation we can use
+/// <https://github.com/gameticharles/advance_math/blob/main/lib/src/math/basic/basic.dart>
 extension DoubleExt on double {
   static const defaultZeroValue = 0.01;
 
@@ -10,7 +12,7 @@ extension DoubleExt on double {
   bool isNear(double v, [double zeroValue = defaultZeroValue]) =>
       (this - v).abs() < zeroValue;
 
-  double get n0 => round().roundToDouble();
+  double get n0 => np(0);
 
   double get n1 => np(1);
 
@@ -20,8 +22,13 @@ extension DoubleExt on double {
 
   double get n4 => np(4);
 
-  double np(int digits) {
-    final p = pow(10, digits);
+  double np(int decimalPlaces) {
+    if (decimalPlaces == 0) {
+      return roundToDouble();
+    }
+
+    final p = pow(10, decimalPlaces);
+
     return (this * p).roundToDouble() / p;
   }
 
