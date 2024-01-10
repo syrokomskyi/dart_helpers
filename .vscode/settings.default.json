@@ -2,7 +2,6 @@
   "editor.codeActionsOnSave": { "source.fixAll": true },
 
   "workbench.colorTheme": "GitHub Dark Default",
-  "workbench.iconTheme": "icons",
   "editor.fontFamily": "fira-code-nerd, FiraCode Nerd Font, Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
