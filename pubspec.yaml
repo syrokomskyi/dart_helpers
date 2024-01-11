@@ -3,19 +3,24 @@ description: Helpers for Dart's development. See also `flutter_helpers`.
 homepage: https://github.com/signmotion/dart_helpers
 publish_to: none
 
-version: 0.1.0+100
+# Format:
+#   version: major.minor.patch
+# You can calculate the number version code by this formula:
+#   code = m[A]jor * 100 * 100 + m[I]nor * 100 + [P]atch
+# Otherwise: +AAIIPP
+version: 0.1.0
 
 environment:
-  sdk: ">=3.2.3"
+  sdk: ">=3.2.3 <4.0.0"
 
 dependencies:
   collection: ^1.18.0
   equatable: ^2.0.5
   json_annotation: ^4.8.1
-  path: ^1.9.0
+  path: ^1.8.3
   strings: ^2.0.3
   vector_math: ^2.1.2
 
 dev_dependencies:
   lints: ^3.0.0
-  test: ^1.25.0
+  test: ^1.25.1
