@@ -1,9 +1,6 @@
 import 'package:dart_helpers/dart_helpers.dart';
 import 'package:test/test.dart';
 
-// ignore: depend_on_referenced_packages
-import 'package:vector_math/vector_math_64.dart';
-
 void main() {
   test('bestScale()', () {
     // original size of picture

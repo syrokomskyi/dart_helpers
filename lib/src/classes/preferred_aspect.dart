@@ -1,7 +1,5 @@
 import 'dart:collection';
 
-import 'package:vector_math/vector_math_64.dart';
-
 import '../../dart_helpers.dart';
 
 /// \see https://docs.flutter.dev/development/ui/assets-and-images#resolution-aware
