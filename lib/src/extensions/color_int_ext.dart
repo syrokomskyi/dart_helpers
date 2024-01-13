@@ -3,10 +3,49 @@ import 'dart:typed_data';
 const defaultColorInt = 0xFFFFFFFF;
 
 extension ColorIntByteDataExtension on ByteData {
-  int colorIntAt(int x, int y, int width) =>
-      colorIntAtByteOffset((x + y * width) * 4);
+  /// ARGB
+  int colorIntAt(
+    int x,
+    int y,
+    int width, [
+    int bytesPerColor = 4,
+  ]) =>
+      colorIntAtI(x + y * width, bytesPerColor);
 
-  int colorIntAtByteOffset(int offset) => getUint32(offset).colorIntRgbaToArgb;
+  /// ARGB
+  int colorIntAtI(int i, [int bytesPerColor = 4]) =>
+      colorIntAtByteOffset(i * bytesPerColor);
+
+  // ARGB
+  void setColorInt(
+    int x,
+    int y,
+    int width,
+    int argb, [
+    int bytesPerColor = 4,
+  ]) =>
+      setColorIntI(x + y * width, argb, bytesPerColor);
+
+  // ARGB
+  void setColorIntI(int i, int argb, [int bytesPerColor = 4]) =>
+      setUint32(i * bytesPerColor, argb.colorIntArgbToRgba);
+
+  /// ARGB
+  int colorIntAtByteOffset(int offset, [int bytesPerColor = 4]) {
+    final v = switch (bytesPerColor) {
+      1 => getUint8(offset),
+      2 => getUint16(offset),
+      3 => getUint32(offset) & 0x00FFFFFF,
+      4 => getUint32(offset),
+      5 => getUint64(offset) & 0x000000FFFFFFFFFF,
+      6 => getUint64(offset) & 0x0000FFFFFFFFFFFF,
+      7 => getUint64(offset) & 0x00FFFFFFFFFFFFFF,
+      8 => getUint64(offset),
+      _ => throw ArgumentError('Unsupported bytesPerColor: $bytesPerColor.'),
+    };
+
+    return v.colorIntRgbaToArgb;
+  }
 }
 
 /// For represented Color like integer value.
@@ -37,11 +76,11 @@ extension ColorIntExt on int {
           ((b & 0xff) << 0)) &
       0xFFFFFFFF;
 
-  int get colorIntRgbaToArgb {
-    final a = this & 0xFF;
-    final rgb = this >> 8;
-    return rgb + (a << 24);
-  }
+  int get colorIntRgbaToArgb =>
+      (this & 0x00FFFFFF) << 8 | (this & 0xFF000000) >> 24;
+
+  int get colorIntArgbToRgba =>
+      ((this << 8) & 0xFFFFFF00) | ((this >> 24) & 0x000000FF);
 
   String get colorIntToArgbString => toRadixString(16).padLeft(8, '0');
 
