@@ -9,13 +9,13 @@ import 'classes/jsons.dart';
 /// Returns a `value` which normalized to range [a, b].
 /// \see scaleToRangeVector2()
 double scaleToRange(
-  double value,
-  double minValue,
-  double maxValue,
-  double a,
-  double b,
+  num value,
+  num minValue,
+  num maxValue,
+  num a,
+  num b,
 ) {
-  final num v = value.clamp(minValue, maxValue);
+  final v = value.clamp(minValue, maxValue);
   return (b - a) * (v - minValue) / (maxValue - minValue) + a;
 }
 
@@ -31,40 +31,40 @@ Vector2 scaleToRangeVector2(
       scaleToRange(value.y, minValue.y, maxValue.y, a.y, b.y));
 }
 
-Vector2 fitSize(Vector2 ownSize, Vector2 screenSize) {
-  final rs = screenSize.x / screenSize.y;
-  final ri = ownSize.x / ownSize.y;
+Vector2 fitSize(Vector2 ourSize, Vector2 wantSize) {
+  final rs = wantSize.x / wantSize.y;
+  final ri = ourSize.x / ourSize.y;
   return rs > ri
-      ? Vector2(ownSize.x * screenSize.y / ownSize.y, screenSize.y)
-      : Vector2(screenSize.x, ownSize.y * screenSize.x / ownSize.x);
+      ? Vector2(ourSize.x * wantSize.y / ourSize.y, wantSize.y)
+      : Vector2(wantSize.x, ourSize.y * wantSize.x / ourSize.x);
 }
 
-double scaleFitSize(Vector2 ownSize, Vector2 screenSize) {
-  final size = fitSize(ownSize, screenSize);
-  return size.x / ownSize.x;
+double scaleFitSize(Vector2 ourSize, Vector2 wantSize) {
+  final size = fitSize(ourSize, wantSize);
+  return size.x / ourSize.x;
 }
 
-double scaleCoverSize(Vector2 ownSize, Vector2 screenSize) {
-  final scaleWidth = screenSize.x > 0 ? screenSize.x / ownSize.x : 1.0;
-  final scaleHeight = screenSize.y > 0 ? screenSize.y / ownSize.y : 1.0;
+double scaleCoverSize(Vector2 ourSize, Vector2 wantSize) {
+  final scaleWidth = wantSize.x > 0 ? wantSize.x / ourSize.x : 1.0;
+  final scaleHeight = wantSize.y > 0 ? wantSize.y / ourSize.y : 1.0;
   return max(scaleWidth, scaleHeight);
 }
 
-bool isScaleCoverByHeight(Vector2 someSize, Vector2 screenSize) {
-  final scaleWidth = screenSize.x > 0 ? screenSize.x / someSize.x : 1.0;
-  final scaleHeight = screenSize.y > 0 ? screenSize.y / someSize.y : 1.0;
+bool isScaleCoverByHeight(Vector2 ourSize, Vector2 wantSize) {
+  final scaleWidth = wantSize.x > 0 ? wantSize.x / ourSize.x : 1.0;
+  final scaleHeight = wantSize.y > 0 ? wantSize.y / ourSize.y : 1.0;
   return scaleWidth < scaleHeight;
 }
 
-bool isScaleCoverByWidth(Vector2 ownSize, Vector2 screenSize) =>
-    !isScaleCoverByHeight(ownSize, screenSize);
+bool isScaleCoverByWidth(Vector2 ourSize, Vector2 wantSize) =>
+    !isScaleCoverByHeight(ourSize, wantSize);
 
-Vector2 correctTooBigSize(Vector2 ownSize, Vector2 screenSize) {
-  final kx = ownSize.x / screenSize.x;
-  final ky = ownSize.y / screenSize.y;
+Vector2 correctTooBigSize(Vector2 ourSize, Vector2 wantSize) {
+  final kx = ourSize.x / wantSize.x;
+  final ky = ourSize.y / wantSize.y;
   final k = max(kx, ky);
 
-  return k > 1 ? ownSize / k : ownSize;
+  return k > 1 ? ourSize / k : ourSize;
 }
 
 /// Any string / key which starts on this symbol will ignore.
@@ -76,21 +76,21 @@ bool needIgnore(String s, [String prefix = '-']) => s.startsWith(prefix);
 bool needIgnoreJsonKey(JsonMap json, String key) =>
     needIgnore((json[key] ?? '') as String);
 
-Vector2 correctTooSmallSize(Vector2 ownSize, Vector2 screenSize) {
+Vector2 correctTooSmallSize(Vector2 ourSize, Vector2 wantSize) {
   // \todo Calculate by real visible size.
   // \todo Move all constant to the class Configure.
   const minSpriteSize = 12.0;
   var kx = 1.0;
-  if (ownSize.x < minSpriteSize) {
-    kx = ownSize.x / minSpriteSize;
+  if (ourSize.x < minSpriteSize) {
+    kx = ourSize.x / minSpriteSize;
   }
   var ky = 1.0;
-  if (ownSize.y < minSpriteSize) {
-    ky = ownSize.y / minSpriteSize;
+  if (ourSize.y < minSpriteSize) {
+    ky = ourSize.y / minSpriteSize;
   }
   final k = min(kx, ky);
 
-  return k < 1 ? ownSize / k : ownSize;
+  return k < 1 ? ourSize / k : ourSize;
 }
 
 String get operatingSystemOneLetter {
