@@ -22,6 +22,7 @@ export 'src/extensions/num_ext.dart';
 export 'src/extensions/string_ext.dart';
 export 'src/extensions/vector_ext.dart';
 
+export 'src/checkers.dart';
 export 'src/log.dart';
 export 'src/utils.dart';
 
