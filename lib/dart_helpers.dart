@@ -1,9 +1,11 @@
 library dart_helpers;
 
+export 'package:strings/strings.dart';
+export 'package:vector_math/vector_math_64.dart';
+
 export 'src/classes/anchor1d.dart';
 export 'src/classes/anchor2d.dart';
 export 'src/classes/base_equatable.dart';
-export 'src/classes/jsons.dart';
 export 'src/classes/preferred_aspect.dart';
 export 'src/classes/size.dart';
 
@@ -22,9 +24,7 @@ export 'src/extensions/num_ext.dart';
 export 'src/extensions/string_ext.dart';
 export 'src/extensions/vector_ext.dart';
 
+export 'src/builders.dart';
 export 'src/checkers.dart';
 export 'src/log.dart';
 export 'src/utils.dart';
-
-export 'package:strings/strings.dart';
-export 'package:vector_math/vector_math_64.dart';

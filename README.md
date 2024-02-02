@@ -8,6 +8,6 @@ A set of functions, extensions and classes for supporting Dart apps.
 
 This library is open source, stable and well tested. Development happens on [GitHub](https://github.com/signmotion/dart_helpers). Feel free to report issues or create a pull-request there. General questions are best asked on [StackOverflow](https://stackoverflow.com/questions/tagged/dart_helpers).
 
-### License
+## License
 
 The MIT License, see [LICENSE](https://github.com/signmotion/dart_helpers/raw/master/LICENSE).
