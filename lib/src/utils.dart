@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:json_dart/json_dart.dart';
 import 'package:strings/strings.dart';
-import 'package:vector_math/vector_math_64.dart';
+import 'package:vector_math/vector_math.dart';
 
 /// Returns a `value` which normalized to range [a, b].
 /// \see scaleToRangeVector2()

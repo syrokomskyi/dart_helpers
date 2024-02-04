@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:vector_math/vector_math_64.dart';
+import 'package:vector_math/vector_math.dart';
 
 class Vector2JsonNullConverter implements JsonConverter<Vector2?, List<num>?> {
   const Vector2JsonNullConverter();

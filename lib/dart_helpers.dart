@@ -1,7 +1,7 @@
-library dart_helpers;
+library;
 
 export 'package:strings/strings.dart';
-export 'package:vector_math/vector_math_64.dart';
+export 'package:vector_math/vector_math.dart';
 
 export 'src/classes/anchor1d.dart';
 export 'src/classes/anchor2d.dart';
