@@ -18,6 +18,7 @@ export 'src/extensions/anchor1d_ext.dart';
 export 'src/extensions/anchor2d_ext.dart';
 export 'src/extensions/color_int_ext.dart';
 export 'src/extensions/directory_ext.dart';
+export 'src/extensions/duration.dart';
 export 'src/extensions/enum_ext.dart';
 export 'src/extensions/json_ext.dart';
 export 'src/extensions/num_ext.dart';
