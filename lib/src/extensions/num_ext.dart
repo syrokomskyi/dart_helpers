@@ -7,6 +7,8 @@ extension DoubleExt on double {
 
   bool get isNearZero => isNear(0.0);
 
+  bool get isNearHalf => isNear(0.5);
+
   bool get isNearOne => isNear(1.0);
 
   bool isNear(double v, [double zeroValue = defaultZeroValue]) =>
