@@ -84,6 +84,8 @@ extension ColorIntExt on int {
 
   String get colorIntToArgbString => toRadixString(16).padLeft(8, '0');
 
+  String get colorIntToRgbString => toRadixString(16).padLeft(6, '0');
+
   /// The alpha channel of this color in an 8 bit value.
   ///
   /// A value of 0 means this color is fully transparent. A value of 255 means
