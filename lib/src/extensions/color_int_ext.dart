@@ -37,10 +37,11 @@ extension ColorIntByteDataExtension on ByteData {
       2 => getUint16(offset),
       3 => getUint32(offset) & 0x00FFFFFF,
       4 => getUint32(offset),
-      5 => getUint64(offset) & 0x000000FFFFFFFFFF,
-      6 => getUint64(offset) & 0x0000FFFFFFFFFFFF,
-      7 => getUint64(offset) & 0x00FFFFFFFFFFFFFF,
-      8 => getUint64(offset),
+      // ! A 64-bits unsupported for Javascript.
+      // 5 => getUint64(offset) & 0x000000FFFFFFFFFF,
+      // 6 => getUint64(offset) & 0x0000FFFFFFFFFFFF,
+      // 7 => getUint64(offset) & 0x00FFFFFFFFFFFFFF,
+      // 8 => getUint64(offset),
       _ => throw ArgumentError('Unsupported bytesPerColor: $bytesPerColor.'),
     };
 
