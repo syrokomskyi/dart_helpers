@@ -1,13 +1,18 @@
 import 'dart:math';
 
-extension RandomListItem<T> on List<T> {
+extension RandomIterableItemExt<T> on Iterable<T> {
+  /// Random item from the [Iterable].
+  T randomItem() => toList().randomItem();
+}
+
+extension RandomListItemExt<T> on List<T> {
   /// Random item from the [List].
   T randomItem() {
     if (isEmpty) {
       throw ArgumentError('The empty list.');
     }
 
-    return this[Random().nextInt(length)];
+    return this[_random.nextInt(length)];
   }
 
   /// Returns [n] random unique entries (elements of [List]).
@@ -26,14 +31,14 @@ extension RandomListItem<T> on List<T> {
   }
 }
 
-extension RandomMapItem<K, V> on Map<K, V> {
+extension RandomMapItemExt<K, V> on Map<K, V> {
   /// Random entry from the [Map].
   MapEntry<K, V> randomEntry() {
     if (isEmpty) {
       throw ArgumentError('The empty list.');
     }
 
-    return entries.toList()[Random().nextInt(length)];
+    return entries.toList()[_random.nextInt(length)];
   }
 
   /// Returns [n] random unique entries (elements of [Map]).
@@ -51,3 +56,5 @@ extension RandomMapItem<K, V> on Map<K, V> {
     return l.sublist(0, n < length ? n : length);
   }
 }
+
+final _random = Random();

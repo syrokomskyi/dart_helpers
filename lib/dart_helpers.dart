@@ -22,6 +22,7 @@ export 'src/extensions/duration.dart';
 export 'src/extensions/enum_ext.dart';
 export 'src/extensions/json_ext.dart';
 export 'src/extensions/num_ext.dart';
+export 'src/extensions/random.dart';
 export 'src/extensions/string_ext.dart';
 export 'src/extensions/vector_ext.dart';
 
