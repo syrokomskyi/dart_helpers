@@ -57,4 +57,17 @@ extension RandomMapItemExt<K, V> on Map<K, V> {
   }
 }
 
+/// [-(1 << 32) ~/ 2; (1 << 32) ~/ 2)
+int get randomInt => _random.nextInt((1 << 32) ~/ 2) - (1 << 32) ~/ 2;
+
+/// [0; 1 << 32)
+int get randomPositiveInt => _random.nextInt(1 << 32);
+
+/// [min; max)
+int randomIntRange(int min, int max) => min + _random.nextInt(max - min + 1);
+
+/// [min; max)
+double randomDoubleRange(double min, double max) =>
+    min + _random.nextDouble() * (max - min);
+
 final _random = Random();
