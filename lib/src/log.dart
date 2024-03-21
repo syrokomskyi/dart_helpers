@@ -1,3 +1,4 @@
+// !Deprecated: Use https://pub.dev/packages/logger instead.
 // ignore_for_file: avoid_print
 
 import 'dart:async';
@@ -5,11 +6,15 @@ import 'dart:developer' as dev show log;
 
 import '../dart_helpers.dart';
 
+@Deprecated('Use Logger instead.')
 var logUsePrint = true;
+
+@Deprecated('Use Logger instead.')
 var logShowSymbolInsteadOfLetter = true;
 
 const _logPrintTruncateLength = 300;
 
+@Deprecated('Use Logger instead.')
 enum LogType {
   undefined('?', '❔', -1),
   info('i', 'ℹ️', 0 * deltaLevel),
@@ -33,6 +38,7 @@ enum LogType {
   String toString() => symbol;
 }
 
+@Deprecated('Use Logger instead.')
 extension on int {
   LogType get type {
     if (this >= LogType.info.level && this < LogType.warning.level) {
@@ -51,6 +57,7 @@ extension on int {
   }
 }
 
+@Deprecated('Use Logger instead.')
 void logi(
   Object? o, {
   DateTime? time,
@@ -97,6 +104,7 @@ void _logi(
   );
 }
 
+@Deprecated('Use Logger instead.')
 void logw(
   Object? o, {
   DateTime? time,
@@ -122,6 +130,7 @@ void logw(
   );
 }
 
+@Deprecated('Use Logger instead.')
 void loge(
   Object? o, {
   DateTime? time,
@@ -198,7 +207,9 @@ void _plog(
   print(r);
 }
 
+@Deprecated('Use Logger instead.')
 extension Log on Object {
+  @Deprecated('Use Logger instead.')
   void logi({
     DateTime? time,
     int? sequenceNumber,
