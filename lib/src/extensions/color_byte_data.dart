@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'color_int_ext.dart';
+import 'color_int.dart';
 
 extension ColorIntByteDataExtension on ByteData {
   /// ARGB

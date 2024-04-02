@@ -1,7 +1,7 @@
 import 'package:json_dart/json_dart.dart';
 
 import '../classes/size.dart';
-import 'string_ext.dart';
+import 'string.dart';
 
 extension JsonCleanProto3Ext on JsonMap {
   /// Same [bittenOf] but for the each string into the map (json).

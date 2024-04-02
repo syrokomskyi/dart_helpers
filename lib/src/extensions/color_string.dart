@@ -1,4 +1,4 @@
-import 'color_int_ext.dart';
+import 'color_int.dart';
 
 extension ColorIntStringExt on String {
   int get toColorInt {

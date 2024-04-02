@@ -1,6 +1,6 @@
 import 'package:vector_math/vector_math.dart';
 
-import 'num_ext.dart';
+import 'num.dart';
 
 extension Vector2Vector2Ext on Vector2 {
   static const zeroLength = 0.01;

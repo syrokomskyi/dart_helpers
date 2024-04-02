@@ -14,19 +14,19 @@ export 'src/constants/string.dart';
 
 export 'src/converters/vector_json_converter.dart';
 
-export 'src/extensions/anchor1d_ext.dart';
-export 'src/extensions/anchor2d_ext.dart';
+export 'src/extensions/anchor1d.dart';
+export 'src/extensions/anchor2d.dart';
 export 'src/extensions/color_byte_data.dart';
-export 'src/extensions/color_int_ext.dart';
-export 'src/extensions/color_string_ext.dart';
-export 'src/extensions/directory_ext.dart';
+export 'src/extensions/color_int.dart';
+export 'src/extensions/color_string.dart';
+export 'src/extensions/directory.dart';
 export 'src/extensions/duration.dart';
-export 'src/extensions/enum_ext.dart';
-export 'src/extensions/json_ext.dart';
-export 'src/extensions/num_ext.dart';
+export 'src/extensions/enum.dart';
+export 'src/extensions/json.dart';
+export 'src/extensions/num.dart';
 export 'src/extensions/random.dart';
-export 'src/extensions/string_ext.dart';
-export 'src/extensions/vector_ext.dart';
+export 'src/extensions/string.dart';
+export 'src/extensions/vector.dart';
 
 export 'src/builders.dart';
 export 'src/checkers.dart';
